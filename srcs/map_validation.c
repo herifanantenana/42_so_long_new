@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:08:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/31 16:07:17 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 04:38:49 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_bool is_map_rectangular(char **map)
 	return (TRUE);
 }
 
-static t_bool is_map_content_valid(t_map_count map_content)
+static t_bool is_map_content_valid(t_map_data map_content)
 {
 	if ((map_content.x * map_content.y) != (map_content.empty + map_content.wall + map_content.item + map_content.exit + map_content.player))
 		return (FALSE);
@@ -43,7 +43,7 @@ static t_bool is_map_content_valid(t_map_count map_content)
 	return (TRUE);
 }
 
-static t_bool is_map_surrounded_by_walls(char **map, t_map_count map_content)
+static t_bool is_map_surrounded_by_walls(char **map, t_map_data map_content)
 {
 	int i;
 	int j;
@@ -66,12 +66,13 @@ static t_bool is_map_surrounded_by_walls(char **map, t_map_count map_content)
 	return (TRUE);
 }
 
-static t_bool is_map_solvable(char **map, t_map_count *map_content)
+static t_bool is_map_solvable(char **map, t_map_data *map_content)
 {
-	t_player player;
+	int player_x;
+	int player_y;
 
-	init_player(&player, map);
-	find_way(map, map_content, player.x, player.y);
+	init_pos_player(map, &player_x, &player_y);
+	find_way(map, map_content, player_x, player_y);
 	if (map_content->item != 0 && map_content->exit != 0)
 		return (FALSE);
 	return (TRUE);
@@ -80,13 +81,13 @@ static t_bool is_map_solvable(char **map, t_map_count *map_content)
 void check_map_validation(const char *path)
 {
 	char **map;
-	t_map_count map_content;
+	t_map_data map_content;
 
 	map = read_map_file(path);
-	init_map_count(&map_content);
+	init_map_data(&map_content);
 	if (is_map_rectangular(map))
 	{
-		set_map_count(&map_content, map);
+		set_map_data(&map_content, map);
 		if (is_map_content_valid(map_content))
 			if (is_map_surrounded_by_walls(map, map_content))
 				if (is_map_solvable(map, &map_content))

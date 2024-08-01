@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 15:49:35 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/31 16:14:46 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 04:38:49 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void map_file_error_exit(const char *msg);
 void print_map(char **map);
 char **read_map_file(const char *filename);
 void check_map_file(const char *path);
-void set_map_count(t_map_count *map_count, char **map);
-void init_map_count(t_map_count *map_count);
-void init_player(t_player *player, char **map);
-void find_way(char **map, t_map_count *map_count, int player_x,
+void set_map_data(t_map_data *map_data, char **map);
+void init_map_data(t_map_data *map_data);
+void init_pos_player(char **map, int *player_x, int *player_y);
+void find_way(char **map, t_map_data *map_data, int player_x,
 			  int player_y);
 void check_map_validation(const char *path);
 #endif

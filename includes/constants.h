@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:39:52 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/31 16:13:36 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 04:23:04 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #define EXT_MAP_FILE_NAME ".ber"
 #define MAP_0 '0'
 #define MAP_W '1'
-#define MAP_I 'C'
+#define MAP_C 'C'
 #define MAP_E 'E'
 #define MAP_P 'P'
 #define MAP_F 'F'

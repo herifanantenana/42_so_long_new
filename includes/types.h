@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 22:39:52 by arakotom          #+#    #+#             */
-/*   Updated: 2024/07/31 16:13:24 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 04:46:40 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_coord
 	int y;
 } t_coord;
 
-typedef struct s_map_count
+typedef struct s_map_data
 {
 	int x;
 	int y;
@@ -34,26 +34,55 @@ typedef struct s_map_count
 	int item;
 	int exit;
 	int player;
-} t_map_count;
+} t_map_data;
 
-typedef struct s_player
+typedef struct s_player_img
 {
-	int x;
-	int y;
-	int move;
-	int score;
-} t_player;
+	void *up;
+	void *down;
+	void *left;
+	void *right;
+} t_player_img;
+
+typedef struct s_collect_img
+{
+	void *coin1;
+	void *coin2;
+	void *coin3;
+} t_collect_img;
+
+typedef struct s_exit_img
+{
+	void *close;
+	void *open;
+} t_exit_img;
+
+typedef struct s_map
+{
+	char **map;
+	t_map_data map_data;
+	t_coord player;
+	t_coord exit;
+} t_map;
+
+typedef struct s_assets
+{
+	void *wall;
+	void *empty;
+	t_player_img player;
+	t_collect_img collect;
+	t_exit_img exit;
+} t_assets;
 
 typedef struct s_game
 {
 	void *mlx;
 	void *win;
-	char **map;
 	int win_w;
 	int win_h;
-	t_map_count map_count;
 	int ratio;
-	t_player player;
+	t_map map;
+	t_assets assets;
 } t_game;
 
 #endif
