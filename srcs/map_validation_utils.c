@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:11:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/08/01 04:36:52 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 06:17:01 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void set_map_data(t_map_data *map_data, char **map)
 	map_data->y = i;
 }
 
-void init_pos_player(char **map, int *player_x, int *player_y)
+void init_pos_player(char **map, t_coord *player)
 {
 	int i;
 	int j;
@@ -65,8 +65,31 @@ void init_pos_player(char **map, int *player_x, int *player_y)
 		{
 			if (map[i][j] == MAP_P)
 			{
-				*player_x = j;
-				*player_y = i;
+				player->x = j;
+				player->y = i;
+				return;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void init_pos_exit(char **map, t_coord *exit)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == MAP_E)
+			{
+				exit->x = j;
+				exit->y = i;
 				return;
 			}
 			j++;

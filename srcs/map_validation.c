@@ -6,7 +6,7 @@
 /*   By: arakotom <arakotom@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:08:44 by arakotom          #+#    #+#             */
-/*   Updated: 2024/08/01 04:38:49 by arakotom         ###   ########.fr       */
+/*   Updated: 2024/08/01 06:22:15 by arakotom         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,10 @@ static t_bool is_map_surrounded_by_walls(char **map, t_map_data map_content)
 
 static t_bool is_map_solvable(char **map, t_map_data *map_content)
 {
-	int player_x;
-	int player_y;
+	t_coord player;
 
-	init_pos_player(map, &player_x, &player_y);
-	find_way(map, map_content, player_x, player_y);
+	init_pos_player(map, &player);
+	find_way(map, map_content, player.x, player.y);
 	if (map_content->item != 0 && map_content->exit != 0)
 		return (FALSE);
 	return (TRUE);
